@@ -38,4 +38,12 @@ Spotify uses a relatively sophisticated set of original values along with tradit
 - loudness: The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks.
 - speechiness: Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value.
 - valence: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track.
-- tempo: The overall estimated tempo of a track in beats per minute (BPM). 
+- tempo: The overall estimated tempo of a track in beats per minute (BPM).
+
+## Future improvements
+
+Due to time constraints and poor internet connection I was unable to gather enough information from Spotify's API before I got timed out and wasn't able to gather enough information for the study. The models ran regressions on datasets containing mixed genres, making it also more difficult to gather effective observations. I advise to gather more data and running multiple models on isolated genres to improve model performance.
+
+
+
+email: vittorioscacchetti1@gmail.com
