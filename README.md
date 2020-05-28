@@ -45,16 +45,20 @@ Spotify uses a relatively sophisticated set of original values along with tradit
 The process used is the standard CRISP-DM process.
 
 1) Business understanding
+
 As previously mentioned, this study is aimed at helping musicians better their chances of success with a novel method of music analysis. Whereas traditional music analysis and criticism takes place in abstract concept such as music theory and topics of discussions, this approach takes a more pragmatic stance on the matter using a more measured set of values.
 
 2) Data understanding and preparation
+
 The data comes in two sets: the Spotify audio features embedded in the platform and the album reviews from Pitchfork. Due to a disproportion between the sets of multiple songs per album, I decided to approach the problem by creating two sets of audio features per album: a set with the mean of the values for every song in an album and a set with the max value of a song for an album, and test to see which value yield the best results.
 
 3) Modeling
+
 The models used are regression models that will give in result a score that tells the influence of the selected features on the target variable. For this study, I decided to use a regular linear regression model to see if there's a general influence from the features selected and a Ridge regression to minimise the influence of features closer to zero. 
 
 4) Evaluation and Deployment
-The models performed in similar fashion: they both showed that the max values were providing little to no influence in predicting the score of an album, but an optimised version of Ridge showed a slight advantage on regular linear regression, so I decided to proceed testing with that model.
+
+The models performed in similar fashion: they both showed that the max values were providing little to no influence in predicting the score of an album. Testing on max values stopped and the focus shifted on mean values only. An optimised version of Ridge showed a slight advantage on regular linear regression, so I decided to proceed testing with that model.
 
 ## Conclusions and future improvements
 
