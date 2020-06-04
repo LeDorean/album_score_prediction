@@ -18,9 +18,7 @@ This repository contains 5 notebooks with the following contents:
 - Exploratory Data Analysis
 - Modeling for Predicting Pitchfork Score
 
-The data used comes from a combination of a Kaggle dataset containing the reviews of over 18000 albums since 1997 and audio features retrieved through Spotify's API.
-
-Pitchfork data can be downloaded from here: https://www.kaggle.com/nolanbconaway/pitchfork-data
+The dataset was created by scraping album scores from Pitchfork and audio features retrieved through Spotify's API.
 
 ## Audio Features
 
@@ -50,7 +48,9 @@ As previously mentioned, this study is aimed at helping musicians better their c
 
 2) Data understanding and preparation
 
-The data comes in two sets: the Spotify audio features embedded in the platform and the album reviews from Pitchfork. Due to a disproportion between the sets of multiple songs per album, I decided to approach the problem by creating two sets of audio features per album: a set with the mean of the values for every song in an album and a set with the max value of a song for an album, and test to see which value yield the best results.
+The data comes in two sets: the Spotify audio features embedded in the platform and the album reviews from Pitchfork. Due to a disproportion between the sets of multiple songs per album, I decided to approach the problem by creating two sets of audio features per album: a set with the mean of the values for every song in an album and a set with the max value of a song for an album, and test to see which value yield the best results. Given their vast majority I decided to focus the research on Rock albums exclusively to avoid conflicting information among different genres.
+
+<img src='Figures/genre_dist.png'>
 
 3) Modeling
 
@@ -58,12 +58,12 @@ The models used are regression models that will give in result a score that tell
 
 4) Evaluation and Deployment
 
-The models performed in similar fashion: they both showed that the max values were providing little to no influence in predicting the score of an album. Testing on max values stopped and the focus shifted on mean values only. An optimised version of Ridge showed a slight advantage on regular linear regression, so I decided to proceed testing with that model.
+The models performed in similar fashion: they both showed that the max features had weaker influence in predicting the score of an album. An optimised version of Ridge showed a slight advantage on regular linear regression, so I decided to proceed testing with that model.
+
+<img src='Figures/features_max.png'> <img src='Figures/features_mean.png'>
 
 ## Conclusions and future improvements
 
-Due to time constraints and poor internet connection I was unable to gather information from Spotify's API before I got timed out and wasn't able to gather enough for the study. The models ran regressions on datasets containing mixed genres, making it also more difficult to gather effective observations. I advise to gather more data and running multiple models on isolated genres to improve model performance.
-
-
+As it stands, we don't have enough points of reference to see if the model actually reflects the trends of the genres it's fitted on. I simply advise gathering enough data to create more models to fit on different genres and try different regression methods to see if the linear relationship tested best reflects the features influencing the score of an album.
 
 email: vittorioscacchetti1@gmail.com
