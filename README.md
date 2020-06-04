@@ -5,7 +5,7 @@
 
 This project aims to predict the key characteristics of what makes an album a critical success, in order to help aspiring musicians improve their chances of breaking through.
 The information on the characteristics was retrieved through Spotify's own method of evaluation. While these metrics may seem a bit arbitrary, it's one of the few methods of quantifying some key musical characteristics, and the abundance of information (directly proportionate to the quantity of music available on the platform) makes it perfect for a study on what makes a song successful.
-The information on album rating was obtained with Pitchfork's reviews, rating albumns on a scale of 0 to 10. Pitchfork began as an online indie music magazine but now reviews mainstream music as well.
+The information on album rating was obtained with Pitchfork's reviews, rating albums on a scale of 0 to 10. Pitchfork began as an online indie music magazine but now reviews mainstream music as well.
 
 
 ## Contents of the repository
@@ -19,6 +19,13 @@ This repository contains 5 notebooks with the following contents:
 - Modeling for Predicting Pitchfork Score
 
 The dataset was created by scraping album scores from Pitchfork and audio features retrieved through Spotify's API.
+
+Pitchfork review page: https://pitchfork.com/reviews/albums/
+Spotify API page: https://developer.spotify.com/documentation/web-api/
+
+## Pitchfork Reviews
+
+Pitchfork was created in 1997 as a website for reviews on indie music. Since then, estabilished itself as one of the most renowned platform for music reviews, and expanding its area of coverage to mainstream music and niche subcultures. I decided to use their metric of evaluation due to the popularity of the platform, where extreme reviews (both positive and negative) generate a lot of discussion, increasing the popularity and the status of an album in case of a high score.
 
 ## Audio Features
 
@@ -54,15 +61,30 @@ The data comes in two sets: the Spotify audio features embedded in the platform 
 
 3) Modeling
 
+I've decided to use the following variables as predictors:
+
+* Speechiness
+* Danceability
+* Acousticness
+* Valence
+* Liveness
+* Instrumentalness
+
+Other variables such as tempo, mode and key are deliberately excluded to avoid suggesting an overly formulaic approach in song making, since a repetitive album is a guaranteed failure. The values chosen will instead point towards more general characteristics while giving musicians greater artistic freedom.
+
 The models used are regression models that will give in result a score that tells the influence of the selected features on the target variable. For this study, I decided to use a regular linear regression model to see if there's a general influence from the features selected and a Ridge regression to minimise the influence of features closer to zero. 
 
 4) Evaluation and Deployment
 
-The models performed in similar fashion: they both showed that the max features had weaker influence in predicting the score of an album. An optimised version of Ridge showed a slight advantage on regular linear regression, so I decided to proceed testing with that model.
+I chose a standard Linear Regression as a baseline model, and a Ridge Regression model due to the regularised nature of the predictive variables and to minimise multicollinearity. The performance of the models on training and validation wasn’t stellar, with R2 scores never exceeding 2% for both models on both mean and max sets. Parameter optimization through GridsearchCV increased results to about 3% on test and validation sets, with Ridge having a slight advantage over the baseline LR. It was now time to carry out the real test and see the results.
+
+On test sets, the optimized Ridge gave a R2 of 5% on the means, and about 2% on the max. This on its own may sound a little disappointing, but a quick visualization of the coefficients helped get better information.
 
 <img src='Figures/features_max.png'> <img src='Figures/features_mean.png'>
 
 ## Conclusions and future improvements
+
+The resulting r2 is relatively low, but we're still able to see which features influence the most a critic's score. Definitely don't make your album too danceable and focus a little more on lyricism. There's a bit of inconsistency with valence and acousticness between values: while the album should be overall positive and with acoustic instruments, it seems it doesn't influence a lot the individual songs. It's also worth noting that Max features have a significantly smaller influence than mean values.
 
 As it stands, we don't have enough points of reference to see if the model actually reflects the trends of the genres it's fitted on. I simply advise gathering enough data to create more models to fit on different genres and try different regression methods to see if the linear relationship tested best reflects the features influencing the score of an album.
 
