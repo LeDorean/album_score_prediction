@@ -16,7 +16,7 @@ This repository contains 5 notebooks with the following contents:
 - Spotify API Calls
 - Data Cleaning
 - Exploratory Data Analysis
-- Modeling for Predicting Pitchfork Score
+- Modeling for Predicting Pitchfork Score. This is the main notebook where the analysis is run and results are shown here.
 
 The dataset was created by scraping album scores from Pitchfork and audio features retrieved through Spotify's API.
 
